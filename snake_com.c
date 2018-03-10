@@ -34,14 +34,14 @@ int main() {
      * l'apertura di una delle due. */
     mkfifo(PIPEOUT, 0666);
     mkfifo(PIPEIN, 0666);
-    fd_in = open(PIPEIN, O_RDONLY);
+    fd_in = open(PIPEOUT, O_RDONLY);
     if (fd_in < 0) {
-        fprintf(stderr, "Non riesco ad aprire '%s' in lettura.\n", PIPEIN);
+        fprintf(stderr, "Non riesco ad aprire '%s' in lettura.\n", PIPEOUT);
         exit(EXIT_FAILURE);
     }
-    fd_out = open(PIPEOUT, O_WRONLY);
+    fd_out = open(PIPEIN, O_WRONLY);
     if (fd_out < 0) {
-        fprintf(stderr, "Non riesco ad aprire '%s' in scrittura.\n", PIPEOUT);
+        fprintf(stderr, "Non riesco ad aprire '%s' in scrittura.\n", PIPEIN);
         exit(EXIT_FAILURE);
     }
 
